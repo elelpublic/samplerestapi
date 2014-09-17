@@ -41,6 +41,6 @@ http://localhost:8500/
 References
 ----------
 
-  * [http://scotch.io/tutorials/javascript/build-a-restful-api-using-node-and-express-4]{http://scotch.io/tutorials/javascript/build-a-restful-api-using-node-and-express-4}
+  * http://scotch.io/tutorials/javascript/build-a-restful-api-using-node-and-express-4
 
 
