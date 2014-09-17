@@ -1,9 +1,24 @@
 samplerestapi
 =============
 
-This is an example skeleton for a REST api on node.
+This is an example skeleton for a REST api on nodejs. It is a fully functional
+management service for books. The book date is stored in a mongo database called
+samplerestapi on localhost.
 
-Start with:
+Install Dependencies
+--------------------
+
+Most dependencies will be automatically resolved when you call 
+
+``
+npm install
+``
+
+Besides that, you should have a mongo database running on localhost.
+
+
+Start
+-----
 
 ``
 node server.js
