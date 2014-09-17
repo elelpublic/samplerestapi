@@ -8,7 +8,9 @@ samplerestapi on localhost.
 Install Dependencies
 --------------------
 
-Most dependencies will be automatically resolved when you call 
+Of course you need to have nodejs installed on your system.
+
+Most other dependencies will be automatically resolved when you call 
 
 ``
 npm install
@@ -35,3 +37,10 @@ It also has an example client running on:
 ``
 http://localhost:8500/
 ``
+
+References
+----------
+
+  * [http://scotch.io/tutorials/javascript/build-a-restful-api-using-node-and-express-4]{http://scotch.io/tutorials/javascript/build-a-restful-api-using-node-and-express-4}
+
+
