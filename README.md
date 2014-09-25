@@ -1,8 +1,10 @@
 samplerestapi
 =============
 
-This is an example skeleton for a REST api on nodejs. It is a fully functional
-management service for books. The book data is stored in a mongo database called
+This is an example skeleton for a REST api on nodejs. 
+
+It is a fully functional management service for books. 
+The book data is stored in a mongo database called
 samplerestapi on localhost.
 
 Install Dependencies

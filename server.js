@@ -125,10 +125,13 @@ var Book     = require('./server/models/book');
 
 // add a simple web-server for the sample client
 app.use( "/", express.static( "client" ) );
+app.use( "/lib", express.static( "bower_components" ) );
 
 
 // START THE SERVER
 // =============================================================================
 app.listen(port);
 console.log('REST Server started on port ' + port);
+console.log('REST: http://localhost:' + port + "/api" );
+console.log('WEB : http://localhost:' + port + "/" );
 

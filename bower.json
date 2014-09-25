@@ -1,0 +1,23 @@
+{
+  "name": "samplerestapi",
+  "version": "0.1",
+  "homepage": "https://github.com/larsfrommars/samplerestapi",
+  "authors": [
+    "larsfrommars <larsfrommars@gmail.com>"
+  ],
+  "description": "This is an example skeleton for a REST api on nodejs.",
+  "license": "LGPL 2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularjs": "~1.2.25",
+    "bootstrap": "~3.2.0",
+    "angular-routing": "~0.1.2",
+    "angular-resource": "~1.2.25"
+  }
+}
