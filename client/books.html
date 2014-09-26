@@ -18,12 +18,16 @@
  	<div class="row result-list">
  		<div class="col-xs-2"></div>
  		<div class="col-xs-8">
- 			<table class="table">
+ 			<table class="table"
+ 			>
+ 			<!-- 
+ 			ng-show="books.lenght > 0" ng-init="books = []"
+ 			 --> 
  				<tr><th>Name</th></tr>
  				<tr ng-repeat="book in books">
  					<td>{{book.name}}</td>
  				</tr>
- 			</ul>
+ 			</table>
  		</div>
  	</div>
 </div>
