@@ -16,8 +16,28 @@ app.factory('BookFactory', function ($resource) {
   })
 });
 
+app.factory('AlertService', function () {
+  return {
+    msg: null,
+    displayCount: 0,
+    showMessage: function( message ) {
+      this.msg = message;
+      this.displayCount = 1;
+    },
+    messageDisplayed: function() {
+      this.displayCount--;
+      if( this.displayCount < 0 ) {
+        this.msg = null;
+      }
+    },
+    message: function() {
+      return this.msg;
+    }
+  }
+});
+
 // routing
-app.config( function( $routeProvider ) {
+app.config( [ '$routeProvider', function( $routeProvider ) {
   
   // routes definieren
   $routeProvider.when( '/', {
@@ -34,12 +54,23 @@ app.config( function( $routeProvider ) {
     controller: 'EditController'
   });
   
-});
+}]);
 
 // controllers
-app.controller('MainController', function( $scope ) {} );
-app.controller('BooksController', [ '$scope', 'BooksFactory', function( $scope, BooksFactory ) {
-  
+app.controller( 'IndexController', [ '$scope', '$rootScope', 'AlertService',
+  function( $scope, $rootScope, AlertService ) {
+    $rootScope.$on("$locationChangeStart", function(event, next, current) { 
+      AlertService.messageDisplayed();
+    });
+    $rootScope.AlertService = AlertService;
+  }]
+);
+
+app.controller( 'MainController', function() {});
+
+app.controller( 'BooksController', [ '$scope', 'BooksFactory'
+  , function( $scope, BooksFactory ) {
+
   $scope.search = function() {
     $scope.books = BooksFactory.query();
   }
@@ -48,15 +79,17 @@ app.controller('BooksController', [ '$scope', 'BooksFactory', function( $scope, 
   $scope.search();
   
 }]);
-app.controller('BookController', [ '$scope', '$routeParams', 'BookFactory', 
-                                   function( $scope, $routeParams, BookFactory ) {
+
+app.controller('BookController', [ '$scope', '$routeParams', 'BookFactory', '$rootScope', 
+  function( $scope, $routeParams, BookFactory, $rootScope ) {
   
   var bookId = $routeParams.bookId;
   $scope.book = BookFactory.show( { id: bookId } );
   
 }]);
-app.controller('EditController', [ '$scope', '$routeParams', 'BookFactory', '$location',
-                                   function( $scope, $routeParams, BookFactory, $location ) {
+
+app.controller('EditController', [ '$scope', '$routeParams', 'BookFactory', '$location', 'AlertService',
+  function( $scope, $routeParams, BookFactory, $location, AlertService ) {
   
   var bookId = $routeParams.bookId;
   $scope.book = BookFactory.show( { id: bookId } );
@@ -64,6 +97,7 @@ app.controller('EditController', [ '$scope', '$routeParams', 'BookFactory', '$lo
   $scope.saveBook = function () {
       BookFactory.update( $scope.book );
       $location.path('/books/' + $scope.book._id );
+      AlertService.showMessage( 'Book was saved.' );
   };
   
 }]);

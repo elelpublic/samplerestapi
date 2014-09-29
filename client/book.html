@@ -35,8 +35,21 @@
 					</td>
 				</tr>
 			</table>
+		</div>
+	</div>
+	<div class="row button-row">
+		<div class="col-xs-12">
 			<a href="#/books/edit/{{book._id}}" class="btn btn-primary">Edit</a>
-			<a href="" ng-click="delete(book._id);" class="btn btn-danger">Delete</a>
+			<a href="" ng-click="reallyDelete=true" class="btn btn-danger">Delete</a>
+			<a href="#/books" class="btn btn-default">Back</a>
+		</div>
+	</div>
+	<div class="row button-row" ng-show="reallyDelete">
+		<div class="col-xs-12">
+			<div>
+				<a href="" ng-click="delete(book._id);" class="btn btn-danger">Really delete?</a>
+				<a href="" ng-click="reallyDelete=false" class="btn btn-default">Cancel</a>
+			</div>
 		</div>
 	</div>
 </div>

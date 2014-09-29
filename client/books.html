@@ -23,28 +23,27 @@
  		<div class="col-xs-8">
  			<table class="table table-striped">
  				<tr>
- 					<th>Result</th>
- 					<th></th>
+ 					<th>Name</th>
+ 					<th>Year</th>
+ 					<th>Author</th>
  				</tr>
  				<tr ng-repeat="book in books">
  					<td>
  						<a href="#/books/{{book._id}}">{{book.name}}</a>
- 						<i> - {{book.year}}, {{book.author}}</i>
  					</td>
- 					<!-- 
  					<td>
- 						<a ng-click="edit(book._id)" class="btn btn-primary">Edit</a>
- 						<a ng-click="delete(book._id)" class="btn btn-danger">Delete</a>
+ 						{{book.year}}
  					</td>
- 					 -->
+ 					<td>
+ 						{{book.author}}
+ 					</td>
+ 				</tr>
+ 				<tr>
+ 					<td colspan="3">
+ 						<a ng-click="addBook()" class="btn btn-primary">Add book</a>
+ 					</td>
  				</tr>
  			</table>
- 		</div>
- 	</div>
- 	<div class="row">
- 		<div class="col-xs-4"></div>
- 		<div class="col-xs-4">
- 			<a ng-click="addBook()" class="btn btn-primary">Add book</a>
  		</div>
  	</div>
 </div>

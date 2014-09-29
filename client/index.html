@@ -9,7 +9,7 @@
 		<script src="/lib/angular-resource/angular-resource.js"></script>
     <script src="app.js"></script>
   </head>
-  <body>
+  <body ng-controller="IndexController">
   
   	<nav class="navbar navbar-default" role="navigation">
   		<div class="container">
@@ -29,6 +29,8 @@
   		</div>
   	</nav>
   
+		<div class="alert alert-success" ng-show="AlertService.message()">{{AlertService.message()}}</div>
+
   	<div ng-view>
   	</div>
 
