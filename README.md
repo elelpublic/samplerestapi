@@ -7,10 +7,11 @@ It is a fully functional management service for books.
 The book data is stored in a mongo database called
 samplerestapi on localhost.
 
+
 Install Dependencies
 --------------------
 
-Of course you need to have nodejs installed on your system.
+You need to have nodejs, bower and mongodb installed on your system.
 
 Most other dependencies will be automatically resolved when you call 
 
@@ -18,8 +19,11 @@ Most other dependencies will be automatically resolved when you call
 npm install
 ``
 
-Besides that, you should have a mongo database running on localhost.
+Install dependencies for the sample html client with:
 
+``
+bower install
+``
 
 Start
 -----

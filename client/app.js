@@ -8,6 +8,14 @@ app.factory('BooksFactory', function ($resource) {
   })
 });
 
+app.factory('BookFactory', function ($resource) {
+  return $resource('/api/books/:id', {}, {
+      show: { method: 'GET' },
+      update: { method: 'PUT', params: {id: '@_id'} },
+      delete: { method: 'DELETE', params: {id: '@_id'} }
+  })
+});
+
 // routing
 app.config( function( $routeProvider ) {
   
@@ -21,6 +29,9 @@ app.config( function( $routeProvider ) {
   }).when( '/books/:bookId', {
     templateUrl: 'book.html',
     controller: 'BookController'
+  }).when( '/books/edit/:bookId', {
+    templateUrl: 'edit.html',
+    controller: 'EditController'
   });
   
 });
@@ -33,8 +44,27 @@ app.controller('BooksController', [ '$scope', 'BooksFactory', function( $scope, 
     $scope.books = BooksFactory.query();
   }
   
+  // for faster results, auto search on load:
+  $scope.search();
+  
 }]);
-app.controller('BookController', function( $scope, $routeParams ) {
-  $scope.bookId = $routeParams.bookId;
-});
+app.controller('BookController', [ '$scope', '$routeParams', 'BookFactory', 
+                                   function( $scope, $routeParams, BookFactory ) {
+  
+  var bookId = $routeParams.bookId;
+  $scope.book = BookFactory.show( { id: bookId } );
+  
+}]);
+app.controller('EditController', [ '$scope', '$routeParams', 'BookFactory', '$location',
+                                   function( $scope, $routeParams, BookFactory, $location ) {
+  
+  var bookId = $routeParams.bookId;
+  $scope.book = BookFactory.show( { id: bookId } );
+  
+  $scope.saveBook = function () {
+      BookFactory.update( $scope.book );
+      $location.path('/books/' + $scope.book._id );
+  };
+  
+}]);
 

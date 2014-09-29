@@ -1,0 +1,44 @@
+<div class="container ">
+ 	<div class="page-header">
+ 		<h1>{{book.name}}</h1>
+ 		<h2>Synopsis</h2>
+ 		<div class="well">{{book.synopsis}}</div>
+ 	</div>
+</div>
+
+<div class="container ">
+	<div class="row">
+		<div class="col-xs-12">
+			<table class="table table-striped">
+				<tr>
+					<td>
+						Author
+					</td>
+					<td>
+						{{book.author}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Publisher
+					</td>
+					<td>
+						{{book.publisher}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Year
+					</td>
+					<td>
+						{{book.year}}
+					</td>
+				</tr>
+			</table>
+			<a href="#/books/edit/{{book._id}}" class="btn btn-primary">Edit</a>
+			<a href="" ng-click="delete(book._id);" class="btn btn-danger">Delete</a>
+		</div>
+	</div>
+</div>
+
+

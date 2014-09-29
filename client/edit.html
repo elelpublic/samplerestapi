@@ -1,0 +1,44 @@
+<div class="container ">
+ 	<form role="form" class="form-horizontal">
+ 		<div class="form-group">
+ 			<label for="name" class="col-xs-2 control-label">Name</label>
+ 			<div class="col-xs-10">
+ 				<input type="text" class="form-control" id="name" ng-model="book.name">
+ 			</div>
+ 		</div>
+ 		<div class="form-group">
+ 			<label for="synopsis" class="col-xs-2 control-label">Synopsis</label>
+ 			<div class="col-xs-10">
+ 				<input type="text" class="form-control" id="synopsis" ng-model="book.synopsis">
+ 			</div>
+ 		</div>
+ 		<div class="form-group">
+ 			<label for="author" class="col-xs-2 control-label">Author</label>
+ 			<div class="col-xs-10">
+ 				<input type="text" class="form-control" id="author" ng-model="book.author">
+ 			</div>
+ 		</div>
+ 		<div class="form-group">
+ 			<label for="publisher" class="col-xs-2 control-label">Publisher</label>
+ 			<div class="col-xs-10">
+ 				<input type="text" class="form-control" id="publisher" ng-model="book.publisher">
+ 			</div>
+ 		</div>
+ 		<div class="form-group">
+ 			<label for="year" class="col-xs-2 control-label">Year</label>
+ 			<div class="col-xs-10">
+ 				<input type="text" class="form-control" id="year" ng-model="book.year">
+ 			</div>
+ 		</div>
+ 		<div class="form-group">
+ 			<div class="col-xs-2">
+ 			</div>
+ 			<div class="col-xs-10">
+				<a href="" ng-click="saveBook();" class="btn btn-primary">Save</a>
+				<a href="#/books/{{book._id}}" class="btn btn-default">Cancel</a>
+ 			</div>
+ 		</div>
+	</form>
+</div>
+
+

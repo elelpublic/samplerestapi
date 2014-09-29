@@ -61,6 +61,15 @@ router.route('/books')
     });
   });
 
+app.updateBook = function( book, req ) {
+  book.name = req.body.name;
+  book.synopsis = req.body.synopsis;
+  book.author = req.body.author;
+  book.publisher = req.body.publisher;
+  book.year = req.body.year;
+}      
+
+
 
 //on routes that end in /books/:book_id
 //----------------------------------------------------
@@ -82,7 +91,8 @@ router.route('/books/:book_id')    // get the book with that id (accessed at GET
       if (err)
         res.send(err);
 
-      book.name = req.body.name;  // update the books info
+      // update the books info
+      app.updateBook( book, req );
 
       // save the book
       book.save(function(err) {
