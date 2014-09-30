@@ -87,9 +87,10 @@ app.controller( 'BooksController', [ '$scope', 'BooksFactory', '$location', 'Fla
   };
   
   $scope.addBook = function() {
-    $scope.book = BooksFactory.create({name:'Untitled'});
-    FlashService.success( 'Book was created.' );
-    $location.path('/books/' + $scope.book._id );
+    BooksFactory.create({name:'Untitled'}).$promise.then( function( response ) {
+      FlashService.success( 'Book was created.' );
+      $location.path('/books/' + response.book._id );
+    });
   };
   
   // for faster results, auto search on load:
