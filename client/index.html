@@ -2,12 +2,8 @@
   <head>
     <meta charset="utf-8">
     <title>Sample REST client</title>
-    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="app.css" />
-    <script src="/lib/angularjs/angular.js"></script>
-    <script src="/lib/angular-route/angular-route.js"></script>
-		<script src="/lib/angular-resource/angular-resource.js"></script>
-    <script src="app.js"></script>
   </head>
   <body ng-controller="IndexController">
   
@@ -29,10 +25,17 @@
   		</div>
   	</nav>
   
-		<div class="alert alert-success" ng-show="AlertService.message()">{{AlertService.message()}}</div>
+		<div class="alert" ng-class="FlashService.severity()" ng-show="FlashService.message()">{{FlashService.message()}}</div>
 
   	<div ng-view>
   	</div>
+
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/lib/angularjs/angular.js"></script>
+    <script src="/lib/angular-route/angular-route.js"></script>
+		<script src="/lib/angular-resource/angular-resource.js"></script>
+    <script src="app.js"></script>
 
   </body>
 </html>

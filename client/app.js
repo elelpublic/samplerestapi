@@ -16,25 +16,36 @@ app.factory('BookFactory', function ($resource) {
   })
 });
 
-app.factory('AlertService', function () {
+app.value( 'FlashValue', {
+  message: null,
+  severity: null,
+  displayCount: 0
+});
+
+app.factory('FlashService', [ 'FlashValue', function ( FlashValue ) {
   return {
-    msg: null,
-    displayCount: 0,
-    showMessage: function( message ) {
-      this.msg = message;
-      this.displayCount = 1;
+    success: function( message ) {
+      this.showMessage( message, 'alert-success' );
+    },
+    showMessage: function( message, severity ) {
+      FlashValue.message = message;
+      FlashValue.severity = severity;
+      FlashValue.displayCount = 1;
     },
     messageDisplayed: function() {
-      this.displayCount--;
-      if( this.displayCount < 0 ) {
-        this.msg = null;
+      FlashValue.displayCount--;
+      if( FlashValue.displayCount < 0 ) {
+        FlashValue.message = null;
       }
     },
     message: function() {
-      return this.msg;
+      return FlashValue.message;
+    },
+    severity: function() {
+      return FlashValue.severity;
     }
   }
-});
+}]);
 
 // routing
 app.config( [ '$routeProvider', function( $routeProvider ) {
@@ -49,7 +60,7 @@ app.config( [ '$routeProvider', function( $routeProvider ) {
   }).when( '/books/:bookId', {
     templateUrl: 'book.html',
     controller: 'BookController'
-  }).when( '/books/edit/:bookId', {
+  }).when( '/books/:bookId/edit', {
     templateUrl: 'edit.html',
     controller: 'EditController'
   });
@@ -57,39 +68,51 @@ app.config( [ '$routeProvider', function( $routeProvider ) {
 }]);
 
 // controllers
-app.controller( 'IndexController', [ '$scope', '$rootScope', 'AlertService',
-  function( $scope, $rootScope, AlertService ) {
+app.controller( 'IndexController', [ '$scope', '$rootScope', 'FlashService',
+  function( $scope, $rootScope, FlashService ) {
     $rootScope.$on("$locationChangeStart", function(event, next, current) { 
-      AlertService.messageDisplayed();
+      FlashService.messageDisplayed();
     });
-    $rootScope.AlertService = AlertService;
+    $rootScope.FlashService = FlashService;
   }]
 );
 
 app.controller( 'MainController', function() {});
 
-app.controller( 'BooksController', [ '$scope', 'BooksFactory'
-  , function( $scope, BooksFactory ) {
+app.controller( 'BooksController', [ '$scope', 'BooksFactory', '$location', 'FlashService',
+  function( $scope, BooksFactory, $location, FlashService ) {
 
   $scope.search = function() {
     $scope.books = BooksFactory.query();
-  }
+  };
+  
+  $scope.addBook = function() {
+    $scope.book = BooksFactory.create({name:'Untitled'});
+    FlashService.success( 'Book was created.' );
+    $location.path('/books/' + $scope.book._id );
+  };
   
   // for faster results, auto search on load:
   $scope.search();
   
 }]);
 
-app.controller('BookController', [ '$scope', '$routeParams', 'BookFactory', '$rootScope', 
-  function( $scope, $routeParams, BookFactory, $rootScope ) {
+app.controller('BookController', [ '$scope', '$routeParams', 'BookFactory', '$rootScope', '$location', 'FlashService', 
+  function( $scope, $routeParams, BookFactory, $rootScope, $location, FlashService ) {
   
   var bookId = $routeParams.bookId;
   $scope.book = BookFactory.show( { id: bookId } );
   
+  $scope.deleteBook = function() {
+    BookFactory.delete( { id: $scope.book._id } );
+    $location.path('/books/' );
+    FlashService.success( 'Book was deleted.' );
+  };
+  
 }]);
 
-app.controller('EditController', [ '$scope', '$routeParams', 'BookFactory', '$location', 'AlertService',
-  function( $scope, $routeParams, BookFactory, $location, AlertService ) {
+app.controller('EditController', [ '$scope', '$routeParams', 'BookFactory', '$location', 'FlashService',
+  function( $scope, $routeParams, BookFactory, $location, FlashService ) {
   
   var bookId = $routeParams.bookId;
   $scope.book = BookFactory.show( { id: bookId } );
@@ -97,7 +120,7 @@ app.controller('EditController', [ '$scope', '$routeParams', 'BookFactory', '$lo
   $scope.saveBook = function () {
       BookFactory.update( $scope.book );
       $location.path('/books/' + $scope.book._id );
-      AlertService.showMessage( 'Book was saved.' );
+      FlashService.success( 'Book was saved.' );
   };
   
 }]);

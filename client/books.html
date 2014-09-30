@@ -27,15 +27,20 @@
  					<th>Year</th>
  					<th>Author</th>
  				</tr>
- 				<tr ng-repeat="book in books">
+ 				<tr ng-repeat="book in books" class="book-row">
  					<td>
- 						<a href="#/books/{{book._id}}">{{book.name}}</a>
+ 						<a data-toggle="tooltip" href="#/books/{{book._id}}" data-placement="top" title="{{book.synopsis}}" >
+ 							{{book.name}}
+ 						</a>
  					</td>
  					<td>
  						{{book.year}}
  					</td>
  					<td>
  						{{book.author}}
+	 					<script>
+		 					$(".book-row a").tooltip();
+	 					</script>
  					</td>
  				</tr>
  				<tr>

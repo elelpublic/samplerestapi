@@ -1,6 +1,8 @@
 <div class="container ">
  	<div class="page-header">
  		<h1>{{book.name}}</h1>
+ 		<small><a target="websearch" href="http://google.com/search?q={{book.name}}"><span class="glyphicon glyphicon-search"/> <span></a></small>
+ 		<small><a target="websearch" href="http://google.com/search?q={{book.name}}">Search the internet</a></small>
  		<h2>Synopsis</h2>
  		<div class="well">{{book.synopsis}}</div>
  	</div>
@@ -39,7 +41,7 @@
 	</div>
 	<div class="row button-row">
 		<div class="col-xs-12">
-			<a href="#/books/edit/{{book._id}}" class="btn btn-primary">Edit</a>
+			<a href="#/books/{{book._id}}/edit" class="btn btn-primary">Edit</a>
 			<a href="" ng-click="reallyDelete=true" class="btn btn-danger">Delete</a>
 			<a href="#/books" class="btn btn-default">Back</a>
 		</div>
@@ -47,7 +49,7 @@
 	<div class="row button-row" ng-show="reallyDelete">
 		<div class="col-xs-12">
 			<div>
-				<a href="" ng-click="delete(book._id);" class="btn btn-danger">Really delete?</a>
+				<a href="" ng-click="deleteBook();" class="btn btn-danger">Really delete?</a>
 				<a href="" ng-click="reallyDelete=false" class="btn btn-default">Cancel</a>
 			</div>
 		</div>
