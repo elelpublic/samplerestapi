@@ -25,6 +25,21 @@ Install dependencies for the sample html client with:
 bower install
 ``
 
+Sample data
+-----------
+
+Some sample data has been exported using:
+
+``
+mongoexport -d samplerestapi -c books > sampledata.json
+``
+
+To import this data, use:
+
+``
+mongoimport -d samplerestapi -c books < sampledata.json
+``
+
 Start
 -----
 

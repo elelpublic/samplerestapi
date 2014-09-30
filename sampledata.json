@@ -1,0 +1,4 @@
+{ "_id" : { "$oid" : "541fe1a29bd41819b3000001" }, "name" : "Der Herr der Ringe", "__v" : 0, "author" : "J.R.R. Tollkien", "year" : 1954, "publisher" : "George Allen & Unwin", "synopsis" : "Hobbits liefern einen Ring." }
+{ "_id" : { "$oid" : "542541825689e10000000001" }, "name" : "Krieg und Frieden", "__v" : 0, "author" : "Leo Tolstoi", "year" : 1968 }
+{ "_id" : { "$oid" : "54254510f480ad42e2c5550d" }, "name" : "Das Kapital", "synopsis" : "Money.", "author" : "Karl Marx", "publisher" : "", "year" : 1867 }
+{ "_id" : { "$oid" : "542a77c2300abf0000000001" }, "name" : "Das Dschungelbuch", "__v" : 0, "author" : "Rudyard Kipling" }
